@@ -4,6 +4,12 @@ body {
     padding: 0;
 }
 
+nav {
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+}
+
 :root {
     --grid-cols: 1;
     --grid-rows: 1;
@@ -11,7 +17,7 @@ body {
 
 #main {
     display: flex;
-    height: 100vh;
+    height: 94vh;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -23,12 +29,23 @@ body {
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     width: 50vw;
-    height: 90vh;
+    height: 88vh;
     border: 10px solid #2d8f6e;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    place-self: flex-start;
+    margin-top: 8px;
+    gap: 5px;
+    margin-right: 10px;
 }
 
 button {
     background-color: #66ebbe;
     color: rgb(42, 61, 78);
     font-size: x-large;
+    border: none;
+    border-radius: 3px;
 }

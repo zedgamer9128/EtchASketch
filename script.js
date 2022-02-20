@@ -1,15 +1,43 @@
-const container = document.getElementById("container");
+let container = document.getElementById("container");
+let cells = null;
+let newBtn = document.querySelector('#new');
+let clearBtn = document.querySelector("#clear");
 
-function makeRows(rows, cols) {
-    container.style.setProperty('--grid-rows', rows);
-    container.style.setProperty('--grid-cols', cols);
-    for (c = 0; c < (rows * cols); c++) {
+function makeGrid(length) {
+    container.style.setProperty('--grid-rows', length);
+    container.style.setProperty('--grid-cols', length);
+    for (i = 0; i < (length * length); i++) {
         let cell = document.createElement("div");
-        cell.addEventListener('mouseenter', function () {
-            cell.style.backgroundColor = "black";
+        cell.addEventListener('mouseover', function () {
+            function color() { return Math.floor(Math.random() * 255);}
+            cell.style.backgroundColor = `rgb(${color()}, ${color()}, ${color()})`;
         })
         container.appendChild(cell).className = "grid-item";
     };
 };
 
-makeRows(16, 16);
+newBtn.addEventListener('click', function () {
+    do {
+        cells = prompt("Input Rows or Columns? (1 to 100): ", "16");
+        if (cells == undefined) {
+            break;
+        }
+    } while (isNaN(parseInt(cells)) || parseInt(cells) > 100);
+    if (cells != undefined) {
+        container.innerHTML = '';
+        makeGrid(parseInt(cells));
+    }
+})
+
+clearBtn.addEventListener('click', function() {
+    container.innerHTML = '';
+    if (cells == null) {
+        makeGrid(16);
+    } else {
+        makeGrid(cells);
+    }
+})
+
+if (cells == null) {
+    makeGrid(16);
+}
